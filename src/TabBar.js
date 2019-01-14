@@ -32,6 +32,7 @@ type Props<T> = SceneRendererProps<T> & {
   getAccessible: (scene: Scene<T>) => ?boolean,
   getAccessibilityLabel: (scene: Scene<T>) => ?string,
   getTestID: (scene: Scene<T>) => ?string,
+  inactiveOpacity?: number,
   renderLabel?: (scene: Scene<T>) => React.Node,
   renderIcon?: (scene: Scene<T>) => React.Node,
   renderBadge?: (scene: Scene<T>) => React.Node,
@@ -63,6 +64,7 @@ export default class TabBar<T: *> extends React.Component<Props<T>, State> {
     getAccessible: PropTypes.func,
     getAccessibilityLabel: PropTypes.func,
     getTestID: PropTypes.func,
+    inactiveOpacity: PropTypes.number,
     renderIcon: PropTypes.func,
     renderLabel: PropTypes.func,
     renderIndicator: PropTypes.func,
@@ -79,6 +81,7 @@ export default class TabBar<T: *> extends React.Component<Props<T>, State> {
       typeof route.accessible !== 'undefined' ? route.accessible : true,
     getAccessibilityLabel: ({ route }: Scene<T>) => route.accessibilityLabel,
     getTestID: ({ route }: Scene<T>) => route.testID,
+    inactiveOpacity: .7
   };
 
   constructor(props: Props<T>) {
@@ -413,7 +416,7 @@ export default class TabBar<T: *> extends React.Component<Props<T>, State> {
           >
             {routes.map((route, i) => {
               const outputRange = inputRange.map(
-                inputIndex => (inputIndex === i ? 1 : 0.7)
+                inputIndex => (inputIndex === i ? 1 : this.inactiveOpacity)
               );
               const opacity = Animated.multiply(
                 this.state.visibility,
