@@ -51,7 +51,7 @@ export default class TabView<T: *> extends React.Component<Props<T>, State> {
     renderScene: PropTypes.func.isRequired,
     renderTabBar: PropTypes.func,
     tabBarPosition: PropTypes.oneOf(['top', 'bottom']),
-    bounces: PropTypes.boolean
+    bounces: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -151,7 +151,7 @@ export default class TabView<T: *> extends React.Component<Props<T>, State> {
     navigationState: this.props.navigationState,
     jumpTo: this._jumpTo,
     useNativeDriver: this.props.useNativeDriver === true,
-    bounces: this.props.bounces
+    bounces: this.props.bounces,
   });
 
   _jumpTo = (key: string) => {

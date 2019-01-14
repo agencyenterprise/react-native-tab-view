@@ -25,6 +25,7 @@ export const SceneRendererPropType = {
   position: PropTypes.object.isRequired,
   jumpTo: PropTypes.func.isRequired,
   useNativeDriver: PropTypes.bool,
+  bounces: PropTypes.bool,
 };
 
 export const PagerRendererPropType = {
@@ -45,4 +46,5 @@ export const PagerRendererPropType = {
   onSwipeEnd: PropTypes.func,
   onAnimationEnd: PropTypes.func,
   children: PropTypes.node.isRequired,
+  bounces: PropTypes.bool,
 };
